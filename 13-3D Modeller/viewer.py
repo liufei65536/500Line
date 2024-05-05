@@ -32,7 +32,7 @@ class Viewer:
         """ 初始化窗口， 注册render函数 """
         glutInit()
         glutInitWindowSize(640, 480)
-        glutCreateWindow("3D Modeller".encode("cp932"))  #glutCreateWindow("3D Modeller")
+        glutCreateWindow("3D Modeller".encode("cp932"))  # glutCreateWindow("3D Modeller")
         glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
         glutDisplayFunc(self.render)
 

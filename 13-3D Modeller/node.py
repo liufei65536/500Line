@@ -9,7 +9,7 @@ from transformation import scaling, translation
 import color
 
 
-class Node(object):
+class Node:
     """ 场景元素的基类 """
 
     def __init__(self):
@@ -74,26 +74,10 @@ class Node(object):
         else:
             self.selected = not self.selected
 
-    def rotate_color(self, forwards):
-        self.color_index += 1 if forwards else -1
-        if self.color_index > color.MAX_COLOR:
-            self.color_index = color.MIN_COLOR
-        if self.color_index < color.MIN_COLOR:
-            self.color_index = color.MAX_COLOR
-
-    def scale(self, up):
-        s = 1.1 if up else 0.9
-        self.scaling_matrix = numpy.dot(self.scaling_matrix, scaling([s, s, s]))
-        self.aabb.scale(s)
-    def translate(self, x, y, z):
-        self.translation_matrix = numpy.dot(
-            self.translation_matrix,
-            translation([x, y, z]))
-
 
 class Primitive(Node):
     def __init__(self):
-        super(Primitive, self).__init__()
+        super().__init__()
         self.call_list = None
 
     def render_self(self):
@@ -104,7 +88,7 @@ class Sphere(Primitive):
     """ Sphere primitive """
 
     def __init__(self):
-        super(Sphere, self).__init__()
+        super().__init__()
         self.call_list = G_OBJ_SPHERE
 
 
@@ -112,23 +96,27 @@ class Cube(Primitive):
     """ Cube primitive """
 
     def __init__(self):
-        super(Cube, self).__init__()
+        super().__init__()
         self.call_list = G_OBJ_CUBE
 
 
 class HierarchicalNode(Node):
     def __init__(self):
-        super(HierarchicalNode, self).__init__()
+        super().__init__()
         self.child_nodes = []
 
     def render_self(self):
         for child in self.child_nodes:
             child.render()
 
+    def rotate_color(self, forwards):
+        for child in self.child_nodes:
+            child.rotate_color(forwards)
+
 
 class SnowFigure(HierarchicalNode):
     def __init__(self):
-        super(SnowFigure, self).__init__()
+        super().__init__()
         self.child_nodes = [Sphere(), Sphere(), Sphere()]
         self.child_nodes[0].translate(0, -0.6, 0)
         self.child_nodes[1].translate(0, 0.1, 0)

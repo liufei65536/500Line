@@ -1,12 +1,13 @@
 from collections import defaultdict
 from OpenGL.GLUT import glutGet, glutKeyboardFunc, glutMotionFunc, glutMouseFunc, glutPassiveMotionFunc, \
-                        glutPostRedisplay, glutSpecialFunc
+    glutPostRedisplay, glutSpecialFunc
 from OpenGL.GLUT import GLUT_LEFT_BUTTON, GLUT_RIGHT_BUTTON, GLUT_MIDDLE_BUTTON, \
-                        GLUT_WINDOW_HEIGHT, GLUT_WINDOW_WIDTH, \
-                        GLUT_DOWN, GLUT_KEY_UP, GLUT_KEY_DOWN, GLUT_KEY_LEFT, GLUT_KEY_RIGHT
+    GLUT_WINDOW_HEIGHT, GLUT_WINDOW_WIDTH, \
+    GLUT_DOWN, GLUT_KEY_UP, GLUT_KEY_DOWN, GLUT_KEY_LEFT, GLUT_KEY_RIGHT
 import trackball
 
-class Interaction(object):
+
+class Interaction:
     def __init__(self):
         """ Handles user interaction """
         # currently pressed mouse button
@@ -14,12 +15,14 @@ class Interaction(object):
         # the current location of the camera
         self.translation = [0, 0, 0, 0]
         # the trackball to calculate rotation
-        self.trackball = trackball.Trackball(theta = -25, distance=15)
+        self.trackball = trackball.Trackball(theta=-25, distance=15)
         # the current mouse location
         self.mouse_loc = None
         # Unsophisticated callback mechanism
+
         self.callbacks = defaultdict(list)
         self.register()
+
     def register(self):
         """ register callbacks with glut """
         glutMouseFunc(self.handle_mouse_button)
@@ -77,7 +80,7 @@ class Interaction(object):
         """ Called on keyboard input from the user """
         xSize, ySize = glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT)
         y = ySize - screen_y
-        if key == b's':    # 's' --> b's'
+        if key == b's':  # 's' --> b's'
             self.trigger('place', 'sphere', x, y)
         elif key == b'c':
             self.trigger('place', 'cube', x, y)

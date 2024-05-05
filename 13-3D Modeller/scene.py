@@ -2,17 +2,21 @@ import sys
 import numpy
 from node import Sphere, Cube, SnowFigure
 
+
 class Scene(object):
     # 放置物体时距相机的默认深度
     PLACE_DEPTH = 15.0
+
     def __init__(self):
         # 场景需要显示的节点列表
         self.node_list = list()
         # 当前选中的节点
         self.selected_node = None
+
     def add_node(self, node):
         """ 向场景添加新节点 """
         self.node_list.append(node)
+
     def render(self):
         """ 渲染场景 """
         for node in self.node_list:
@@ -45,6 +49,7 @@ class Scene(object):
     def rotate_selected_color(self, forwards):
         """ Rotate the color of the currently selected node """
         if self.selected_node is None: return
+
         self.selected_node.rotate_color(forwards)
 
     def scale_selected(self, up):
