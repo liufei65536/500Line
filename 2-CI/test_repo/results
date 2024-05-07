@@ -1,0 +1,13 @@
+F.
+======================================================================
+FAIL: test_fail (test_fail.TestFileFail.test_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/projects/500Line/2-CI/test_repo_clone_runner/tests/test_fail.py", line 6, in test_fail
+    self.fail("I will fail")
+AssertionError: I will fail
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.003s
+
+FAILED (failures=1)
