@@ -1,3 +1,3 @@
 # 目录
-2. - [x] A Continuous Integration System: CI系统
-13. - [x] A 3D Modeller：3D 建模器
+- [x] 2. A Continuous Integration System: CI系统
+- [x] 13. A 3D Modeller：3D 建模器
