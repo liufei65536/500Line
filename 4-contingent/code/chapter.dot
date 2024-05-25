@@ -1,0 +1,16 @@
+digraph {
+graph [rankdir=LR];
+node [fontname=Arial shape=rect penwidth=2 color="#DAB21D"
+      style=filled fillcolor="#F4E5AD"]
+{rank=same
+"read_text_file('chapter.dot')"
+}
+node [shape=rect penwidth=2 color="#708BA6"
+      style=filled fillcolor="#DCE9ED"]
+{rank=same
+"render('chapter.dot')"
+}
+node [shape=oval penwidth=0 style=filled fillcolor="#E8EED2"
+      margin="0.05,0"]
+"read_text_file('chapter.dot')" -> "render('chapter.dot')"
+}
